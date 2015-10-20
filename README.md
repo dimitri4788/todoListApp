@@ -1,8 +1,15 @@
-**Title**: Todo-List App  
-**Description**: A todo-list app written using Django Web framework.  
+TODO-list App
+=============
+A todo-list app written using Django Web framework.  
 
-###To run
+To run
+------
 ```sh
 $ python manage.py migrate
 $ python manage.py runserver
 ```
+
+Author
+------
+Deep Aggarwal  
+deep.uiuc@gmail.com  
