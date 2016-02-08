@@ -1,0 +1,67 @@
+{% extends "todoList/base.html" %}
+
+{% block title %}Todo List{% endblock %}
+
+{% block header %}
+<ul>
+    <li><a href="/todoList/">Home</a></li>
+    <li><a href="/todoList/aboutMe/">About Me</a></li>
+</ul>
+{% endblock header %}
+
+{% block content %}
+{# This is a form to add a new task #}
+<form action="/todoList/addTask/" method="post">
+    {% csrf_token %}
+    <label for="task">Task: </label>
+    <input id="task" type="text" name="task" value="{{ current_name }}">
+    <input type="submit" value="Add">
+</form>
+
+{# This block will show all the tasks in the task list #}
+{% if latestTaskList %}
+    <ol>
+        {% for task in latestTaskList %}
+        <form action="/todoList/deleteTask/{{ task.getKind }}/{{ task.getId }}/" method="post">
+                {% csrf_token %}
+                <li>
+                    <label for="task">{{ task.taskText }}</label>
+                    <input id="deep" type="submit" value="Delete">
+                </li>
+            </form>
+        {% endfor %}
+    </ol>
+{% else %}
+    <p>No tasks are available.</p>
+{% endif %}
+
+<br>
+<br>
+<br>
+
+{# This is a button to delete all the tasks #}
+{% if latestTaskList %}
+    <form action="/todoList/deleteAllTasks/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete All Tasks">
+    </form>
+{% endif %}
+{% endblock content %}
+
+
+{# ------------------------------------------------------- #}
+{# --------------------- Some notes  --------------------- #}
+{# ------------------------------------------------------- #}
+
+{% comment "Optional note" %}
+{% if latestTaskList %}
+    <ul>
+    {% for task in latestTaskList %}
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+        <li><p> {{ task.taskText }} {{ task.id }}</p></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tasks are available.</p>
+{% endif %}
+{% endcomment %}
