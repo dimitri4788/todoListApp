@@ -9,6 +9,10 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
+Screenshot
+----------
+![](resources/images/appImage.png)
+
 Author
 ------
 Deep Aggarwal  
